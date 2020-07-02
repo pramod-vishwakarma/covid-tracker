@@ -16,7 +16,7 @@ export const fetchData = async () => {
 export const fetchDailyData = async () =>
 {
     try {
-        const { data } = await axios.get('{$url}/daily');
+        const { data } = await axios.get(`${url}/daily`);
         // console.log(data);
         const modifiedData = data.map((dailyData) => (
             {
@@ -30,5 +30,15 @@ export const fetchDailyData = async () =>
     {
 
     }
+}
+
+export const fetchCountries = async () => {
+    try{
+        const {data:{countries}} = await axios.get(`${url}/countries`);
+        return countries.map((country) => countries.name);
+    }catch (error)
+    {
+        console.log(error);
     
+}
 }

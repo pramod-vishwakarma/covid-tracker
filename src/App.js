@@ -9,18 +9,22 @@ import './App.css';
 class App extends React.Component{
   state = {
     data :{},
+    country:'',
   }
 
  async componentDidMount() {
     const fetchedData = await fetchData();
     this.setState({data: fetchedData});
   }
+  handelCountryChange= async (country)=> {
+
+}
   render(){
     const {data} = this.state;
   return (
     <div className="container">
       <Cards data={data}/>
-      <CountryPicker/>
+      <CountryPicker handelCountryChange={this.handelCountryChange}/>
       <Charts/>
     </div>
   );

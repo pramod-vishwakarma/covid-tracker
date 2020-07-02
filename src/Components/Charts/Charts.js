@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import { fetchDailyData } from '../../api';
-import { Line,Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import styles from './Charts.module.css';
 
 const Charts = () => {
@@ -9,36 +9,37 @@ const Charts = () => {
     useEffect(() => {
         const fetchAPI= async () => {
             setDailyData(await fetchDailyData());
-        }
-        // console.log(dailyData)
-        fetchAPI();
+          }
+          console.log(dailyData);
+          fetchAPI();
     });
 
-    const LineChart = (
-        dailyData.length 
-        ?(
-        <Line
-         data={{
-            labels: dailyData.map(({ date}) => date),
+    const lineChart = (
+        dailyData.length ? (
+         <Line
+          data={{
+            labels: dailyData.map(({date}) => date),
             datasets:[{
-                data: dailyData.map(({ confirmed}) => confirmed),
+                data: dailyData.map(({confirmed}) => confirmed),
                 label: 'infected',
                 borderColor: '#3333ff',
                 fill: 'true',
             },{
-                data: dailyData.map(({ deaths}) => deaths),
+                data: dailyData.map(({deaths}) => deaths),
                 label: 'deaths',
                 borderColor: 'red',
                 backgroundColor:'rgba(255,0,0,0.5)',
                 fill: 'true',
-            }]
+            }],
 
-        }}/>): null
+        }}
+      />
+      ): null
     );
 
     return(
         <div className={styles.container}>
-            {LineChart}
+            {lineChart}
         </div>
     )
 }
