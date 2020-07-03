@@ -11,11 +11,12 @@ const CountryPicker=({handelCountryChange})=>{
         }
         fetchAPI();
     },[setFetchedCountries]);
+    // console.log(fetchCountries);
     return(
         <FormControl className={styles.fromControl}>
-            <NativeSelect defaultValue="" onChange={(e)=> handelCountryChange()}>
-                <option value="global">Global</option>
-                {fetchedCountries.map((country,i) => <option key={i} value={country}>{country}</option>)}
+            <NativeSelect defaultValue="" onChange={(e)=> handelCountryChange(e.target.value)}>
+                <option value="">Global</option>
+                {fetchedCountries.map((country,i) => <option key={i} value={country}> {country} </option>)}
             </NativeSelect>
         </FormControl>
     )
